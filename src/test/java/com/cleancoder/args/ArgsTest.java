@@ -27,7 +27,12 @@ public class ArgsTest {
 
   @Test
   public void shouldThrowIllegalArgumentExceptionOnUnknownArg() {
-    assertThatIllegalArgumentException().isThrownBy(() -> new ArgsMain(Arrays.array("-u")));
-    assertThatIllegalArgumentException().isThrownBy(() -> new ArgsMain(Arrays.array("-k")));
+    assertThatIllegalArgumentException()
+            .isThrownBy(() -> new ArgsMain(Arrays.array("-u")))
+            .withMessage("Parameter -u is not supported");
+
+    assertThatIllegalArgumentException()
+            .isThrownBy(() -> new ArgsMain(Arrays.array("-k")))
+            .withMessage("Parameter -k is not supported");
   }
 }
