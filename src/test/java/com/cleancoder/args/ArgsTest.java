@@ -3,12 +3,12 @@ package com.cleancoder.args;
 import org.assertj.core.util.Arrays;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class ArgsTest {
 
   @Test
-  public void testCreateWithNoSchemaOrArguments() {
+  public void detectWhenHelpIsRequested() {
     ArgsMain args = new ArgsMain(Arrays.array("-h"));
 
     boolean helpRequested = args.isHelp();
@@ -23,5 +23,10 @@ public class ArgsTest {
     boolean helpRequested = args.isHelp();
 
     assertThat(helpRequested).isFalse();
+  }
+
+  @Test
+  public void shouldThrowIllegalArgumentExceptionOnUnknownArg() {
+    assertThatIllegalArgumentException().isThrownBy(() -> new ArgsMain(Arrays.array("-u")));
   }
 }
