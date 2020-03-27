@@ -1,14 +1,18 @@
 package com.cleancoder.args;
 
+import org.assertj.core.util.Arrays;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 public class ArgsTest {
 
   @Test
   public void testCreateWithNoSchemaOrArguments() {
-    assertThat(0).isEqualTo(0);
+    ArgsMain args = new ArgsMain(Arrays.array("-h"));
+
+    boolean helpRequested = args.isHelp();
+
+    assertThat(helpRequested).isTrue();
   }
 }
