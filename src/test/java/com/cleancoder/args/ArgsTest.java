@@ -7,20 +7,23 @@ import static org.assertj.core.api.Assertions.*;
 
 public class ArgsTest {
 
+  Argument help = Argument.flag("h");
+
   @Test
   public void detectWhenHelpIsRequested() {
-    ArgsMain args = new ArgsMain(Arrays.array("-h"));
 
-    boolean helpRequested = args.isHelp();
+    ArgsMain args = ArgsMain.parametersDefinitions(help).parse(Arrays.array("-h"));
+
+    boolean helpRequested = args.is(help);
 
     assertThat(helpRequested).isTrue();
   }
 
   @Test
   public void detectWhenHelpIsNotRequested() {
-    ArgsMain args = new ArgsMain(Arrays.array());
+    ArgsMain args = ArgsMain.parametersDefinitions(help).parse(Arrays.array());
 
-    boolean helpRequested = args.isHelp();
+    boolean helpRequested = args.is(help);
 
     assertThat(helpRequested).isFalse();
   }

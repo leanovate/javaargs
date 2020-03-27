@@ -10,8 +10,26 @@ public class ArgsMain {
     public ArgsMain(String[] givenArgs) {
         this.givenArgs = Arrays.asList(givenArgs);
 
-        if (this.givenArgs.stream().anyMatch(arg -> !isAllowed(arg)))
-            throw new IllegalArgumentException("Parameter -u is not supported");
+        this.givenArgs.stream()
+                .filter(arg -> !isAllowed(arg))
+                .findFirst()
+                .ifPresent(unsupported -> {
+                    throw new IllegalArgumentException("Parameter " + unsupported + " is not supported");
+                });
+    }
+
+    public static Parser parametersDefinitions(Argument help) {
+        return null;
+    }
+
+    public boolean is(Argument help) {
+        return false;
+    }
+
+    public static class Parser {
+        public ArgsMain parse(String[] givenArgs) {
+            return null;
+        }
     }
 
     boolean isHelp() {
