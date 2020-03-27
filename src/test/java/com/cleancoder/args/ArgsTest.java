@@ -15,4 +15,13 @@ public class ArgsTest {
 
     assertThat(helpRequested).isTrue();
   }
+
+  @Test
+  public void detectWhenHelpIsNotRequested() {
+    ArgsMain args = new ArgsMain(Arrays.array());
+
+    boolean helpRequested = args.isHelp();
+
+    assertThat(helpRequested).isFalse();
+  }
 }

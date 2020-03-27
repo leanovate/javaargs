@@ -6,6 +6,6 @@ public class ArgsMain {
     }
 
     boolean isHelp() {
-        return false;
+        return true;
     }
 }
