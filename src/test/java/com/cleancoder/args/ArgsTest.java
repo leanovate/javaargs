@@ -28,5 +28,6 @@ public class ArgsTest {
   @Test
   public void shouldThrowIllegalArgumentExceptionOnUnknownArg() {
     assertThatIllegalArgumentException().isThrownBy(() -> new ArgsMain(Arrays.array("-u")));
+    assertThatIllegalArgumentException().isThrownBy(() -> new ArgsMain(Arrays.array("-k")));
   }
 }
